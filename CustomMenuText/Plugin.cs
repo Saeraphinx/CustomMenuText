@@ -20,16 +20,58 @@ using IPA.Loader;
 namespace CustomMenuText
 {
     [Plugin(RuntimeOptions.SingleStartInit)]
-
-
-    
-
     public class Plugin
     {
         public static int selection_type = 0;
         public static int choice = 0;
 
-        public static GameObject defaultLogo = new GameObject();
+        private static GameObject _defaultLogo;
+        public static GameObject defaultLogo
+        {
+            get
+            {
+                if (_defaultLogo != null)
+                {
+                    return _defaultLogo;
+                }
+                else
+                {
+                    try
+                    {
+                        Transform gltrans1 = null;
+                        Transform gltrans2 = null;
+                        GameObject _menuManager = GameObject.FindObjectOfType<MenuEnvironmentManager>().gameObject;
+                        foreach (Transform logoTransform in _menuManager.GetComponentInChildren<Transform>(true).gameObject.GetComponentsInChildren<Transform>(true))
+                        {
+                            if (logoTransform.name == "Logo")
+                            {
+                                _defaultLogo = logoTransform.gameObject;
+                            } else if (logoTransform.name.Contains("GlowLines"))
+                            {
+                                if (gltrans1 == null)
+                                {
+                                    gltrans1 = logoTransform;
+                                } else
+                                {
+                                    gltrans2 = logoTransform;
+                                }
+                            }
+                        }
+                        gltrans1.SetParent(_defaultLogo.transform, true);
+                        gltrans2.SetParent(_defaultLogo.transform, true);
+                        return _defaultLogo;
+                    } catch
+                    {
+                        Plugin.Log.Warn("Logo not found, creating empty object.");
+                        return new GameObject();
+                    }
+                }
+            }
+            set
+            {
+                _defaultLogo = value;
+            }
+        }
 
         internal static Plugin Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
@@ -45,7 +87,7 @@ namespace CustomMenuText
         {
             Instance = this;
             Log = logger;
-            harmony = new Harmony("com.headassbtw.custommenutext");
+            harmony = new Harmony("Saeraphinx.custommenutext");
             Log.Info("CustomMenuText initialized.");
         }
 
@@ -94,7 +136,7 @@ namespace CustomMenuText
         public static List<string[]> allEntries = null;
 
         public string Name => "Custom Menu Text";
-        public string Version => "3.4.0";
+        public string Version => "4.0.0";
 
         // Store the text objects so when we leave the menu and come back, we aren't creating a bunch of them
         public static TextMeshPro mainText;
@@ -118,28 +160,15 @@ namespace CustomMenuText
             InitializeImageFolder();
             
             choice = Configuration.PluginConfig.Instance.SelectedTextEntry;
-            try
-            {
-                PluginManager.GetPlugin("DiColors");
-                try
-                {
-                    harmony.PatchAll(Assembly.GetExecutingAssembly());
-                }catch(Exception e) { Plugin.Log.Critical("Harmony Patching Failed:"); Plugin.Log.Critical(e.ToString()); }
+            SceneManager.activeSceneChanged += SceneManagerOnActiveSceneChanged;
 
-            }
-            catch (Exception)
-            {
-                Log.Critical("DiColors is not installed, or was not loaded at the current time, disabling DiColors specific features.");
-                Configuration.PluginConfig.Instance.UsingDiColors = false;
-                SceneManager.activeSceneChanged += SceneManagerOnActiveSceneChanged;
-            }
-            
-            //new GameObject("CustomMenuTextController").AddComponent<CustomMenuTextController>();
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+
             instance = this;
             
             FontManager.FirstTimeFontLoad();
             
-            BeatSaberMarkupLanguage.Settings.BSMLSettings.instance.AddSettingsMenu("Menu Text", "CustomMenuText.Configuration.settings.bsml", Configuration.CustomMenuTextSettingsUI.instance);
+            //BeatSaberMarkupLanguage.Settings.BSMLSettings.instance.AddSettingsMenu("Menu Text", "CustomMenuText.Configuration.settings.bsml", Configuration.CustomMenuTextSettingsUI.instance);
             Views.UICreator.CreateMenu();
             reloadFile();
         }
@@ -157,16 +186,8 @@ namespace CustomMenuText
 
         public void YeetUpTheText()
         {
-            if (Configuration.PluginConfig.Instance.UsingDiColors)
-            {
-                MainColor = diMainColor;
-                BottomColor = diBottomColor;
-            }
-            else
-            {
                 MainColor = defaultMainColor;
                 BottomColor = defaultBottomColor;
-            }
 
             
             if (Configuration.PluginConfig.Instance.SelectionType == 0)
@@ -217,13 +238,12 @@ namespace CustomMenuText
 
         public void TextInit()
         {
-            if (Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText")?.transform.SetParent(defaultLogo.transform.parent.transform, true);
-            if (Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(defaultLogo.transform.parent.transform, true);
-            if (!Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText")?.transform.SetParent(null, true);
-            if (!Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(null, true);
+            //if (Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText")?.transform.SetParent(defaultLogo.transform.parent.transform, true);
+            //if (Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(defaultLogo.transform.parent.transform, true);
+            GameObject.Find("CustomMenuText")?.transform.SetParent(null, true);
+            GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(null, true);
             if (mainText != null) mainText.color = MainColor;
             if (bottomText != null) bottomText.color = BottomColor;
-            defaultLogo = FindUnityObjectsHelper.GetAllGameObjectsInLoadedScenes().Where(go => go.name == "Logo").FirstOrDefault();
 
             if (allEntries == null)
             {
@@ -272,9 +292,6 @@ namespace CustomMenuText
         {
             // Since 0.13.0, we have to create our TextMeshPros differently! You can't change the font at runtime, so we load a prefab with the right font from an AssetBundle. This has the side effect of allowing for custom fonts, an oft-requested feature.
 
-            
-
-            defaultLogo = FindUnityObjectsHelper.GetAllGameObjectsInLoadedScenes().Where(go => go.name == "Logo").FirstOrDefault();
 
             // Logo Top Pos : 0.63, 18.61, 26.1
             // Logo Bottom Pos : 0, 14, 26.1
@@ -296,7 +313,7 @@ namespace CustomMenuText
                 mainText.overflowMode = TextOverflowModes.Overflow;
                 mainText.enableWordWrapping = false;
                 textObj.SetActive(true);
-                if (Configuration.PluginConfig.Instance.OnlyInMainMenu) textObj.transform.SetParent(defaultLogo.transform.parent.transform, true);
+                //if (Configuration.PluginConfig.Instance.OnlyInMainMenu) textObj.transform.SetParent(defaultLogo.transform.parent.transform, true);
             }
             mainText.rectTransform.position = DefTopPos;
 
@@ -321,7 +338,7 @@ namespace CustomMenuText
                 bottomText.overflowMode = TextOverflowModes.Overflow;
                 bottomText.enableWordWrapping = false;
                 textObj2.SetActive(true);
-                if(Configuration.PluginConfig.Instance.OnlyInMainMenu) textObj2.transform.SetParent(defaultLogo.transform.parent.transform, true);
+                //if(Configuration.PluginConfig.Instance.OnlyInMainMenu) textObj2.transform.SetParent(defaultLogo.transform.parent.transform, true);
 
             }
             bottomText.rectTransform.position = DefBotPos;
@@ -376,12 +393,12 @@ namespace CustomMenuText
                 // Set the text
                 mainText.text = String.Join("\n", lines);
             }
+            Plugin.Log.Info("Text set to: \"" + mainText.text + "\" Bottom Text: \"" + bottomText.text + "\"");
         }
 
         public void reloadFile()
         {
-            if(allEntries != null)
-                allEntries.Clear();
+            allEntries?.Clear();
             allEntries = FileUtils.readFromFile(FILE_PATH);
             Configuration.PluginConfig.Instance.SelectionType = selection_type;
             Configuration.PluginConfig.Instance.SelectedTextEntry = choice;
@@ -397,6 +414,7 @@ namespace CustomMenuText
                 SceneManager.activeSceneChanged -= SceneManagerOnActiveSceneChanged;
             }
             catch (Exception) { }
+            harmony.UnpatchSelf();
 
             string cachePath = Path.Combine(UnityGame.UserDataPath, "CustomMenuText", "Cache");
             if (Directory.Exists(cachePath))

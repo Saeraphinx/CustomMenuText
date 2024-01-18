@@ -36,7 +36,7 @@ namespace CustomMenuText
             return "<#" + hr + hg + hb + ">";
         }
 
-        public static GameObject FindLogo(logo l)
+        public static GameObject FindLogo(logo? l)
         {
             switch (l)
             {
@@ -64,13 +64,11 @@ namespace CustomMenuText
             return (Sprite)FindLogo(logoType).GetComponentInChildren<SpriteRenderer>().sprite;
         }
 
-        
-
         public static Texture2D ClearTexture2D(int width, int height)
         {
             Texture2D tex = new Texture2D(1, 1);
             tex.SetPixel(0, 0, Color.clear);
-            tex.Resize(width, height);
+            tex.Reinitialize(width, height);
             return tex;
         }
 
@@ -154,7 +152,7 @@ namespace CustomMenuText
         public static Sprite LoadPNG(string filePath)
         {
 
-            Texture2D tex = null;
+            Texture2D tex;
             byte[] fileData;
             Sprite spr = null;
             if (File.Exists(filePath))
@@ -171,9 +169,9 @@ namespace CustomMenuText
 
         public static LogoImages LoadImagesFromChunk(string chunkPath)
         {
-            Sprite s;
-            Sprite e;
-            Sprite b;
+            //Sprite s;
+            //Sprite e;
+            //Sprite b;
             CustomTypes.LogoImages li = new CustomTypes.LogoImages();
 
             if(File.Exists(chunkPath + "\\LogoSaber.png"))
@@ -236,7 +234,7 @@ namespace CustomMenuText.CustomTypes
         public bool E;
         public string name;
 
-        public LogoImages(Sprite BatLogo, Sprite SaberLogo, string name, Sprite ELogo = null, bool E = false)
+        public LogoImages(Sprite BatLogo, Sprite SaberLogo, string name, Sprite ELogo = null)
         {
             this.BatLogo = BatLogo;
             this.SaberLogo = SaberLogo;

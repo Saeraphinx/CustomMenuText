@@ -21,12 +21,13 @@ namespace CustomMenuText
 
         public static void FindOGLogo()
         {
-            CustomTypes.LogoImages li = new CustomTypes.LogoImages();
-
-            li.BatLogo = Tools.GetTexture(CustomTypes.logo.bat);
-            li.E = Tools.GetTexture(CustomTypes.logo.a);
-            li.SaberLogo = Tools.GetTexture(CustomTypes.logo.saber);
-            li.name = "Default";
+            CustomTypes.LogoImages li = new CustomTypes.LogoImages
+            {
+                BatLogo = Tools.GetTexture(CustomTypes.logo.bat),
+                E = Tools.GetTexture(CustomTypes.logo.a),
+                SaberLogo = Tools.GetTexture(CustomTypes.logo.saber),
+                name = "Default"
+            };
             ImageChunks.Add(li);
         }
 
@@ -36,12 +37,12 @@ namespace CustomMenuText
             {
                 try
                 {
-                    ImageChunks.Add(FileUtils.LoadImagesFromChunk(path));
+                    ImageChunks.Add(FileUtils.LoadImagesFromChunk(pah));
                 }
                 catch (NullReferenceException)
                 {
                     Plugin.Log.Notice("[ImageManager] No Image Chunks To Load!");
-                    ImageChunks.Add(new CustomTypes.LogoImages(null, null, null, null, false));
+                    ImageChunks.Add(new CustomTypes.LogoImages(null, null, null, null));
                 }
             }
         }

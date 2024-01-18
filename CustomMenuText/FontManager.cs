@@ -72,7 +72,7 @@ namespace CustomMenuText
 
             string[] files = Directory.GetFiles(Path.Combine(UnityGame.UserDataPath,"CustomMenuText","Fonts"));
             List<string> TTFs = new List<string>();
-            List<TMP_FontAsset> TTFFiles = new List<TMP_FontAsset>();
+            //List<TMP_FontAsset> TTFFiles = new List<TMP_FontAsset>();
             foreach (var file in files)
             {
                 if (file.EndsWith(".ttf") || file.EndsWith(".otf"))

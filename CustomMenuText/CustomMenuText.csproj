@@ -58,11 +58,6 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DiColors, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <Private>False</Private>
-      <HintPath>$(BeatSaberDir)\Plugins\DiColors.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="IPA.Loader, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <Private>False</Private>
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\IPA.Loader.dll</HintPath>
@@ -129,13 +124,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\SettingsController.cs" />
     <Compile Include="FontManager.cs" />
-    <Compile Include="Harmony Patches\DiColorsPatch.cs" />
+    <Compile Include="Harmony Patches\BaseGameMenuManagementPatch.cs" />
     <Compile Include="ImageManager.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Configuration\PluginConfig.cs" />
-    <Compile Include="CustomMenuTextController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -151,7 +144,6 @@
     <EmbeddedResource Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Configuration\settings.bsml" />
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
     <None Include="CustomMenuText.csproj.user" Condition="Exists('CustomMenuText.csproj.user')" />

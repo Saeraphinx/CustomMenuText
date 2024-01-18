@@ -202,15 +202,13 @@ namespace CustomMenuText.ViewControllers
         [UIAction("textSelect")]
         public void textSelect(TableView _, Cell cell)
         {
-            int row2 = 0;
+            int row2;
             int row = CellList.IndexOf(cell);
-            if(row == 0)
+            if(row == 0) // never gets executed?
             {
-                row2 = row;
+                //row2 = row;
                 Plugin.selection_type = 0;
                 Configuration.PluginConfig.Instance.SelectionType = 0;
-
-                
             }
             if(row == 1)
             {
@@ -332,6 +330,8 @@ namespace CustomMenuText.ViewControllers
                 }
                 catch (Exception e)
                 {
+
+                    Plugin.Log.Warn(e);
                     line1 = "Failed to";
                     line2 = "load preview";
                 }
@@ -398,6 +398,7 @@ namespace CustomMenuText.ViewControllers
             
             try
             {
+                // this errors the first time bubt subsequent runs dont??
                 Plugin.mainText.font = FontManager.Fonts[Configuration.PluginConfig.Instance.Font];
                 Plugin.bottomText.font = FontManager.Fonts[Configuration.PluginConfig.Instance.Font];
             }
@@ -411,7 +412,7 @@ namespace CustomMenuText.ViewControllers
                 else
                 {
                     Plugin.Log.Critical("Tried to set the text object's font beyond the bounds of the font array");
-                    Plugin.Log.Critical($"Slected: {Configuration.PluginConfig.Instance.Font}, Length: {FontManager.Fonts.Count}");
+                    Plugin.Log.Critical($"Selected: {Configuration.PluginConfig.Instance.Font}, Length: {FontManager.Fonts.Count}");
                 }
             }
         }

@@ -11,8 +11,9 @@ namespace CustomMenuText.Configuration
         public virtual int SelectionType { get; set; } = 0;
         public virtual int SelectedTextEntry { get; set; } = 0;
         public virtual int SelectedImagesEntry { get; set; } = 0;
-        public virtual bool UsingDiColors { get; set; } = true;
-        public virtual bool OnlyInMainMenu { get; set; } = true;
+        /// <summary>
+        /// public virtual bool UsingDiColors { get; set; } = true;
+        /// </summary>
         public virtual int Font { get; set; } = 0;
 
         /// <summary>

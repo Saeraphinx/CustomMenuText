@@ -1,5 +1,5 @@
-﻿# Custom Menu Text v3.3.0
-# by Arti, heavily modified by headassbtw
+﻿# Custom Menu Text v4.0.0
+# by Arti, heavily modified by headassbtw, heavily modified again by Saeraphinx
 # Special Thanks: Kyle1413, Alphie
 #
 # Use # for comments!
@@ -139,3 +139,7 @@ AUROS
 <#0080FF>JADE
 
 <i>slontey
+
+# hi pink
+PINK
+CUTE
