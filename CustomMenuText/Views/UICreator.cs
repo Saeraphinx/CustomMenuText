@@ -14,7 +14,7 @@ namespace CustomMenuText.Views
         {
             if (!Created)
             {
-                MenuButton menuButton = new MenuButton("Menu Text", "Manage custom menu text", ShowFlow);
+                MenuButton menuButton = new MenuButton("Custom Menu Text", "Manage Custom Menu Text", ShowFlow);
                 MenuButtons.instance.RegisterButton(menuButton);
                 Created = true;
             }

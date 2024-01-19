@@ -3,7 +3,7 @@
   "id": "CustomMenuText",
   "name": "CustomMenuText",
   "author": "Saeraphinx",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Replalces the ingame Beat Saber logo with custom text.",
   "gameVersion": "1.34.2",
   "dependsOn": {
