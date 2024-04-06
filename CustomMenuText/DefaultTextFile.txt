@@ -1,4 +1,4 @@
-﻿# Custom Menu Text v4.0.0
+# Custom Menu Text v4.0.0
 # by Arti, heavily modified by headassbtw, heavily modified again by Saeraphinx
 # Special Thanks: Kyle1413, Alphie
 #
@@ -164,3 +164,69 @@ CUTE
 <#FF218C>Hearts
 <#FFD800>Not
 <#21B1FF>Parts
+
+# osu!
+<#F170AA>osu!
+
+# Geometry Dash
+<#BBFF44>Geometry
+<#BBFF44>Dash
+
+# Etterna
+<#654781>Etterna
+
+# Spin Rhythm XD
+<#FFFFFF><size=120%>Spin
+<#FFFFFF><size=100%><<Rhythm<size=180%><#18C2FF>X<#FF3C7B>D
+
+# Guitar Hero
+<#FFFFFF>Guitar
+<#FFFFFF>Hero
+
+# Beatmania IIDX
+<#FFFFFF>Beatmania IIDX
+
+# Arcaea
+<#A976A1>A<#597694>r<#635181>c<#635181>a<#333242>e<#8B6D91>a
+
+# Taiko No Tatsujin
+<#E60012>Taiko no
+<#F49A00>Tatsujin
+<size=60%><#F49A00>D<#EB5751>r<#E73071>u<#C82D8C>m<#9B277A>'<#7B5AA3>n<#5881B8>'<#00A6BA>F<#00A484>u<#72BB2A>n<#E2DD03>!
+
+# Muse Dash
+<#FE4BA7>use
+<size=200%><#FEB824>M<size=100%>D<#FD0CD5>as<size=200%><#F100E5>H
+
+# Parappa The Rapper
+<#F9AC2C>Pa<#02A2B0>Rappa<#68C165>The<#F5666C>Rapper
+
+# Sound Voltex
+<#251D1F>sound<size=200%><#FF2079>V<size=100%><#251D1F>oltex
+     <size=50%><#FF2079>V<#251D1F>ividwave
+
+# Stepmania
+<#80C0E0>StepMania
+
+# VOEZ
+<cspace=1.5em><#6E6D8D>V<#FA7577>O<#6E6D8D>EZ
+
+# Rhythm Heaven
+<#FAAD00>Rhythm  
+<#FF5102>  Heaven
+
+# Just Dance 2018
+<#FFFFFF>just dance
+<size=20%><#EF3D61>2018
+
+# Crypt of the Necrodancer
+<#FFFFFF>Crypt
+<size=75%><#FFFFFF>of the
+<size=100%><#FFFFFF>NecroDancer
+
+# Audiosurf
+<#CAFD70>Audio<#FFFFFF>Surf
+
+# Just Shapes & Beats
+<size=80%><#FFFFFF>Just <size=100%>sh<#FD479E>a<#FFFFFF>pes
+<size=130%><#81D9E5>&beats
