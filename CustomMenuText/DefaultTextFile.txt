@@ -1,4 +1,4 @@
-﻿# Custom Menu Text v4.0.0
+# Custom Menu Text v4.0.0
 # by Arti, heavily modified by headassbtw, heavily modified again by Saeraphinx
 # Special Thanks: Kyle1413, Alphie
 #
@@ -143,6 +143,27 @@ AUROS
 # hi pink
 PINK
 CUTE
+
+# Be gay do crimes
+<#FF0008>B<#D4FF00>e <#00FF5E>g<#006EFF>a<#C400FF>y
+<#FF0008>D<#FFB700>o <#88FF00>c<#00FF37>r<#00FFF6>i<#0049FF>m<#7600FF>e<#FF00C9>s
+
+# Trans Rights Are Human Rights
+<#5BCEFA>Trans
+<#F5A9B8>Rights
+<#FFFFFF>Are
+<#F5A9B8>Human
+<#5BCEFA>Rights
+
+# Be Bi Make People Cri
+<#D60270>Be Bi
+<#9B4F96>Make
+<#0038A8>People Cri
+
+# Hearts Not Parts
+<#FF218C>Hearts
+<#FFD800>Not
+<#21B1FF>Parts
 
 # osu!
 <#F170AA>osu!
