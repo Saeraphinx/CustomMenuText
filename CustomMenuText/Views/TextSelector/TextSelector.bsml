@@ -29,15 +29,15 @@
 			<list id='FontList' select-cell='fontSelect' vertical-fit='PreferredSize' list-width='45'/>
 			<page-button event-click='FontList#PageDown' direction='Down'/>
 		</vertical>
-		<!--<vertical>
+		<vertical>
 			<page-button event-click='ImgList#PageUp' direction='Up'/>
 			<list id='ImgList' select-cell='imgSelect' vertical-fit='PreferredSize' list-width='45'/>
 			<page-button event-click='ImgList#PageDown' direction='Down'/>
-		</vertical>-->
+		</vertical>
 		</horizontal>
 	<horizontal>
 		<button text='Reload Text' on-click='refreshTextEntries'/>
 		<button text='Reload Fonts' on-click='refreshFontEntries'/>
-		<!--<button text='Reload Images' on-click='refreshImageEntries'/>-->
+		<button text='Reload Images' on-click='refreshImageEntries'/>
 	</horizontal>
 </vertical>

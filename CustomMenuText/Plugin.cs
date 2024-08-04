@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using HarmonyLib;
 using IPA.Loader;
+using CustomMenuText.CustomTypes;
 
 namespace CustomMenuText
 {
@@ -133,7 +134,8 @@ namespace CustomMenuText
         public static bool initalFunctionsFinished = false;
 
         // caches entries loaded from the file so we don't need to do IO every time the menu loads
-        public static List<string[]> allEntries = null;
+        public static List<string[]> allTextEntries = null;
+        public static List<LogoImages> allImageEntries = null;
 
         public string Name => "Custom Menu Text";
         public string Version => "4.0.0";
@@ -141,6 +143,7 @@ namespace CustomMenuText
         // Store the text objects so when we leave the menu and come back, we aren't creating a bunch of them
         public static TextMeshPro mainText;
         public static TextMeshPro bottomText; // BOTTOM TEXT
+        public static SpriteRenderer spriteText;
 
         public System.Random random;
 
@@ -179,8 +182,8 @@ namespace CustomMenuText
                 Directory.CreateDirectory(Path.Combine(UnityGame.UserDataPath, "CustomMenuText") + "\\");
             if (!Directory.Exists(FONT_PATH))
                 Directory.CreateDirectory(FONT_PATH);
-            //if (!Directory.Exists(IMG_PATH))
-            //        Directory.CreateDirectory(IMG_PATH);
+            if (!Directory.Exists(IMG_PATH))
+                Directory.CreateDirectory(IMG_PATH);
         }
 
 
@@ -204,11 +207,10 @@ namespace CustomMenuText
                         pickRandomEntry();
                         break;
                     case 2:
-                    
                         //pre-chosen
                         try
                         {
-                            setText(allEntries[choice]);
+                            setText(allTextEntries[choice]);
                         }
                         catch (Exception e)
                         {
@@ -219,6 +221,13 @@ namespace CustomMenuText
                 defaultLogo.SetActive(false);
             }
             
+        }
+
+        enum SelectionType
+        {
+            None = 0,
+            Random = 1,
+            Chosen = 2,
         }
         
         public void ApplyFont()
@@ -242,14 +251,15 @@ namespace CustomMenuText
             //if (Configuration.PluginConfig.Instance.OnlyInMainMenu) GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(defaultLogo.transform.parent.transform, true);
             GameObject.Find("CustomMenuText")?.transform.SetParent(null, true);
             GameObject.Find("CustomMenuText-Bot")?.transform.SetParent(null, true);
+            GameObject.Find("CustomMenuText-ImageLogo")?.transform.SetParent(null, true);
             if (mainText != null) mainText.color = MainColor;
             if (bottomText != null) bottomText.color = BottomColor;
 
-            if (allEntries == null)
+            if (allTextEntries == null)
             {
                 reloadFile();
             }
-            if (allEntries.Count == 0)
+            if (allTextEntries.Count == 0)
             {
                 Log.Notice("File found, but it contained no entries! Leaving original logo intact.");
             }
@@ -272,10 +282,10 @@ namespace CustomMenuText
             // int entryPicked = UnityEngine.Random.Range(0, entriesInFile.Count);
             // using System.Random instead
             if (random == null) random = new System.Random();
-            int entryPicked = random.Next(allEntries.Count);
+            int entryPicked = random.Next(allTextEntries.Count);
 
             // Set the text
-            setText(allEntries[entryPicked]);
+            setText(allTextEntries[entryPicked]);
         }
         /// <summary>
         /// Replaces the logo in the main menu (which is an image and not text
@@ -312,13 +322,12 @@ namespace CustomMenuText
                 textObj.transform.localScale *= 3.7f;
                 mainText.overflowMode = TextOverflowModes.Overflow;
                 mainText.enableWordWrapping = false;
+                textObj.AddComponent<TubeBloomPrePassLight>();
                 textObj.SetActive(true);
                 //if (Configuration.PluginConfig.Instance.OnlyInMainMenu) textObj.transform.SetParent(defaultLogo.transform.parent.transform, true);
             }
             mainText.rectTransform.position = DefTopPos;
-
             mainText.color = MainColor;
-
             mainText.text = "BEAT";
             mainText.font = FontManager.Fonts[Configuration.PluginConfig.Instance.Font];
 
@@ -345,12 +354,22 @@ namespace CustomMenuText
             bottomText.color = BottomColor;
             bottomText.text = "SABER";
             bottomText.font = FontManager.Fonts[Configuration.PluginConfig.Instance.Font];
-            
+
+            if (spriteText == null) spriteText = GameObject.Find("CustomMenuText-ImageLogo")?.GetComponent<SpriteRenderer>();
+            if (spriteText == null)
+            {
+                GameObject imageObj = new GameObject("CustomMenuText-ImageLogo");
+                imageObj.SetActive(false);
+                spriteText = imageObj.AddComponent<SpriteRenderer>();
+                imageObj.SetActive(true);
+            }
+            spriteText.transform.position = DefTopPos;
 
             // Destroy Default Logo
 
             //if (defaultLogo != null) defaultLogo.SetActive(false);
         }
+
         /// <summary>
         /// Sets the text in the main menu (which normally reads BEAT SABER) to
         /// the text of your choice. TextMeshPro formatting can be used here.
@@ -398,8 +417,8 @@ namespace CustomMenuText
 
         public void reloadFile()
         {
-            allEntries?.Clear();
-            allEntries = FileUtils.readFromFile(FILE_PATH);
+            allTextEntries?.Clear();
+            allTextEntries = FileUtils.readFromFile(FILE_PATH);
             Configuration.PluginConfig.Instance.SelectionType = selection_type;
             Configuration.PluginConfig.Instance.SelectedTextEntry = choice;
         }
@@ -425,13 +444,6 @@ namespace CustomMenuText
                 }
                 Directory.Delete(cachePath);
             }
-                
         }
-
-        
-
-
-        
-
     }
 }

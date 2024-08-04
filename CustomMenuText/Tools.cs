@@ -36,6 +36,7 @@ namespace CustomMenuText
             return "<#" + hr + hg + hb + ">";
         }
 
+        /*
         public static GameObject FindLogo(logo? l)
         {
             switch (l)
@@ -79,10 +80,12 @@ namespace CustomMenuText
             ReplaceTexture(logo.a, imgs.ELogo);
             ReplaceTexture(logo.saber, imgs.SaberLogo);
         }
+        */
     }
 
     public static class FileUtils
     {
+        // reads the file with all of the custom texts and then returns them as a list of string arrays
         public static List<string[]> readFromFile(string relPath)
         {
             List<string[]> entriesInFile = new List<string[]>();
@@ -145,10 +148,6 @@ namespace CustomMenuText
             return entriesInFile;
         }
 
-        public static List<String> GetFileChunks(string path)
-        {
-            return Directory.GetDirectories(path).ToList();
-        }
         public static Sprite LoadPNG(string filePath)
         {
 
@@ -167,6 +166,7 @@ namespace CustomMenuText
             return spr;
         }
 
+        /* moved to ImageManager.cs
         public static LogoImages LoadImagesFromChunk(string chunkPath)
         {
             //Sprite s;
@@ -189,6 +189,7 @@ namespace CustomMenuText
 
             return li;
         }
+        */
         public static void WriteDefaultConfig()
         {
             using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("CustomMenuText.DefaultTextFile.txt"))
@@ -205,12 +206,14 @@ namespace CustomMenuText
 
 namespace CustomMenuText.CustomTypes
 {
+    /*
     public enum logo
     {
         bat,
         a,
         saber
     }
+    */
 
     public struct OldFont
     {
@@ -225,7 +228,18 @@ namespace CustomMenuText.CustomTypes
             this.builtin = builtIn;
         }
     }
+    public struct LogoImages
+    {
+        public Sprite LogoSprite;
+        public string name;
 
+        public LogoImages(Sprite LogoSprite, string name)
+        {
+            this.LogoSprite = LogoSprite;
+            this.name = name;
+        }
+    }
+    /*
     public struct LogoImages
     {
         public Sprite BatLogo;
@@ -256,4 +270,5 @@ namespace CustomMenuText.CustomTypes
 
         }
     }
+    */
 }

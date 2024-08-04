@@ -197,7 +197,7 @@ namespace CustomMenuText.ViewControllers
         
         [UIComponent("TextList")] public CustomCellListTableData textListData;
         [UIComponent("FontList")] public CustomListTableData fontListData = new CustomListTableData();
-        //[UIComponent("ImgList")] public CustomListTableData imgListData = new CustomListTableData();
+        [UIComponent("ImgList")] public CustomListTableData imgListData = new CustomListTableData();
         [UIValue("contents")] public List<object> CellList = new List<object>();
         [UIAction("textSelect")]
         public void textSelect(TableView _, Cell cell)
@@ -236,11 +236,11 @@ namespace CustomMenuText.ViewControllers
             Plugin.mainText.font = FontManager.Fonts[row];
             Plugin.bottomText.font = FontManager.Fonts[row];
         }
-        /*[UIAction("imgSelect")]
+        [UIAction("imgSelect")]
         public void imgSelect(TableView _, int row)
         {
             Tools.ReplaceLogos(ImageManager.ImageChunks[row]);
-        }*/
+        }
 
         [UIAction("refreshTextEntries")]
         public void ReloadTextEntries()
@@ -254,11 +254,11 @@ namespace CustomMenuText.ViewControllers
             FontManager.FirstTimeFontLoad();
             SetupFontList();
         }
-        /*[UIAction("refreshImageEntries")]
+        [UIAction("refreshImageEntries")]
         public void ReloadImageEntries()
         {
             SetupImageList();
-        }*/
+        }
 
 
         [UIAction("#post-parse")]
@@ -277,7 +277,7 @@ namespace CustomMenuText.ViewControllers
             CellList.Add(defaultt);
             CellList.Add(random);
 
-            foreach(var TextEntry in Plugin.allEntries)
+            foreach(var TextEntry in Plugin.allTextEntries)
             {
                 try
                 {
@@ -416,7 +416,7 @@ namespace CustomMenuText.ViewControllers
                 }
             }
         }
-        /*public void SetupImageList()
+        public void SetupImageList()
         {
             imgListData.data.Clear();
             foreach (var imageChunk in ImageManager.ImageChunks)
@@ -430,7 +430,7 @@ namespace CustomMenuText.ViewControllers
                 imgListData.data.Add(imgCell);
             }
             imgListData.tableView.ReloadData();
-        }*/
+        }
         public void SelectCorrectCell(int selType, int choice)
         {
             switch (selType)

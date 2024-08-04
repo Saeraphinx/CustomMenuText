@@ -1,4 +1,5 @@
-﻿using IPA.Utilities;
+﻿using CustomMenuText.CustomTypes;
+using IPA.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,39 +11,24 @@ namespace CustomMenuText
 {
     class ImageManager
     {
-        public static List<String> ChunkPaths = new List<String>();
-        public static List<CustomTypes.LogoImages> ImageChunks = new List<CustomTypes.LogoImages>();
-
-        public static void ImgInit()
+        public static void LoadImages()
         {
-            FindOGLogo();
             PathToChunks(Plugin.IMG_PATH);
-        }
-
-        public static void FindOGLogo()
-        {
-            CustomTypes.LogoImages li = new CustomTypes.LogoImages
-            {
-                BatLogo = Tools.GetTexture(CustomTypes.logo.bat),
-                E = Tools.GetTexture(CustomTypes.logo.a),
-                SaberLogo = Tools.GetTexture(CustomTypes.logo.saber),
-                name = "Default"
-            };
-            ImageChunks.Add(li);
         }
 
         public static void PathToChunks(string path)
         {
-            foreach(var pah in FileUtils.GetFileChunks(path))
+            foreach(var pah in Directory.GetDirectories(path).ToList())
             {
                 try
                 {
-                    ImageChunks.Add(FileUtils.LoadImagesFromChunk(pah));
+                    LogoImages logoImage = new LogoImages(FileUtils.LoadPNG(pah), pah.Substring(pah.LastIndexOf('\\')));
+                    Plugin.allImageEntries.Add(logoImage);
                 }
                 catch (NullReferenceException)
                 {
-                    Plugin.Log.Notice("[ImageManager] No Image Chunks To Load!");
-                    ImageChunks.Add(new CustomTypes.LogoImages(null, null, null, null));
+                    Plugin.Log.Notice("[ImageManager] failed to load "+pah);
+                    Plugin.allImageEntries.Add(new LogoImages(null, null));
                 }
             }
         }
