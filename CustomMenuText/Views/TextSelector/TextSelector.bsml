@@ -1,4 +1,4 @@
-﻿<vertical xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+﻿<vertical xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://monkeymanboy.github.io/BSML-Docs/BSMLSchema.xsd'>
 	<!--<horizontal pref-width="100" horizontal-fit="PreferredSize">
 		<text text="s" align="Center" font-size="7" />
 		<tab-selector tab-tag="yo" />
@@ -10,14 +10,16 @@
 				<stack vertical-fit='PreferredSize' child-expand-height='false' >
 					<vertical pref-height='14' min-height='14' vertical-fit='PreferredSize'>
 						<horizontal horizontal-fit='PreferredSize'>
-							<background background='round-rect-panel' tags='hovered' pref-width='9' pref-height='9' min-width='9' pad-right='10'/>
 							<vertical background='round-rect-panel' vertical-fit='PreferredSize' min-height='9' pref-height='9' padding='5' bg-color='#FFFFFF60'>
+								<horizontal>
+									<!--<background background='round-rect-panel' tags='hovered' pref-width='9' pref-height='9' min-width='9' pad-right='10'/>!-->
 								<vertical child-expand-width='false' spacing='-1' vertical-fit='Unconstrained'>
 									<text text='~text-top' id='topText' align='Center' word-wrapping="true"/>
 									<text text='~text-bottom' id='bottomText' align='Center' word-wrapping="true"/>
 								</vertical>
+								</horizontal>
+								<!--<background background='round-rect-panel' tags='hovered' pref-width='9' pref-height='9' min-width='9' pad-right='10'/>!-->
 							</vertical>
-							<background background='round-rect-panel' tags='hovered' pref-width='9' pref-height='9' min-width='9' pad-left='10'/>
 						</horizontal>
 					</vertical>
 				</stack>

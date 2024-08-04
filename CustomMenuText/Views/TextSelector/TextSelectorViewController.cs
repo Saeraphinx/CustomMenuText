@@ -187,7 +187,8 @@ namespace CustomMenuText.ViewControllers
         }
     }
 
-    
+    [HotReload(RelativePathToLayout = @"TextSelector.bsml")]
+    [ViewDefinition("CustomMenuText.Views.TextSelector.TextSelector.bsml")]
     class TextSelectorViewController : BSMLResourceViewController
     {
         public int LastSelectedCell = 0;
