@@ -2,6 +2,7 @@
 using BeatSaberMarkupLanguage.MenuButtons;
 using BeatSaberMarkupLanguage.Settings;
 using BeatSaberMarkupLanguage.FloatingScreen;
+using BeatSaberMarkupLanguage.Util;
 
 namespace CustomMenuText.Views
 {
@@ -10,12 +11,14 @@ namespace CustomMenuText.Views
         public static MenuTextFlowCoordinator MenuTextFlowCoordinator;
         public static bool Created;
 
-        public static void CreateMenu()
+        async public static void CreateMenu()
         {
+            await MainMenuAwaiter.WaitForMainMenuAsync();
+            
             if (!Created)
             {
                 MenuButton menuButton = new MenuButton("Custom Menu Text", "Manage Custom Menu Text", ShowFlow);
-                MenuButtons.instance.RegisterButton(menuButton);
+                MenuButtons.Instance.RegisterButton(menuButton);
                 Created = true;
             }
         }
