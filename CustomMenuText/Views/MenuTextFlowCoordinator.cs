@@ -26,7 +26,7 @@ namespace CustomMenuText.Views
             {
                 if (firstActivation)
                 {
-                    SetTitle("Menu Text");
+                    SetTitle("Custom Menu Text");
                     showBackButton = true;
                     ProvideInitialViewControllers(_textSelectorViewController);
                 }

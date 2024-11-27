@@ -9,18 +9,12 @@ namespace CustomMenuText.Views
     internal class UICreator
     {
         public static MenuTextFlowCoordinator MenuTextFlowCoordinator;
-        public static bool Created;
 
         async public static void CreateMenu()
         {
-            await MainMenuAwaiter.WaitForMainMenuAsync();
-            
-            if (!Created)
-            {
-                MenuButton menuButton = new MenuButton("Custom Menu Text", "Manage Custom Menu Text", ShowFlow);
-                MenuButtons.Instance.RegisterButton(menuButton);
-                Created = true;
-            }
+			await MainMenuAwaiter.WaitForMainMenuAsync();
+            MenuButton menuButton = new MenuButton("Custom Menu Text", "Manage Custom Menu Text", ShowFlow);
+            MenuButtons.Instance.RegisterButton(menuButton);
         }
 
 

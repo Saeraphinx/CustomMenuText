@@ -14,6 +14,7 @@ using System.Text;
 using IPA.Utilities;
 using System.Reflection;
 using System.Threading.Tasks;
+using BeatSaberMarkupLanguage.Util;
 using HarmonyLib;
 using IPA.Loader;
 
@@ -151,7 +152,7 @@ namespace CustomMenuText
         }
 
         [OnStart]
-        public void OnApplicationStart()
+        async public void OnApplicationStart()
         {
             if (!Directory.Exists(Path.Combine(UnityGame.UserDataPath, "CustomMenuText", "Cache")))
                 Directory.CreateDirectory(Path.Combine(UnityGame.UserDataPath, "CustomMenuText", "Cache"));
@@ -168,7 +169,8 @@ namespace CustomMenuText
             
             FontManager.FirstTimeFontLoad();
             
-            //BeatSaberMarkupLanguage.Settings.BSMLSettings.instance.AddSettingsMenu("Menu Text", "CustomMenuText.Configuration.settings.bsml", Configuration.CustomMenuTextSettingsUI.instance);
+            await MainMenuAwaiter.WaitForMainMenuAsync();
+            MainMenuAwaiter.MainMenuInitializing += Views.UICreator.CreateMenu;
             Views.UICreator.CreateMenu();
             reloadFile();
         }
@@ -425,13 +427,6 @@ namespace CustomMenuText
                 }
                 Directory.Delete(cachePath);
             }
-                
         }
-
-        
-
-
-        
-
     }
 }
