@@ -342,18 +342,18 @@ namespace CustomMenuText.ViewControllers
 
             }
 
-            textListData.tableView.ReloadData();
+            textListData.TableView.ReloadData();
             
             switch (Configuration.PluginConfig.Instance.SelectionType)
             {
                 case 0:
-                    textListData.tableView.SelectCellWithIdx(0);
+                    textListData.TableView.SelectCellWithIdx(0);
                     break;
                 case 1:
-                    textListData.tableView.SelectCellWithIdx(1);
+                    textListData.TableView.SelectCellWithIdx(1);
                     break;
                 case 2:
-                    textListData.tableView.SelectCellWithIdx(Configuration.PluginConfig.Instance.SelectedTextEntry + 2);
+                    textListData.TableView.SelectCellWithIdx(Configuration.PluginConfig.Instance.SelectedTextEntry + 2);
                     break;
             }
         }
@@ -362,7 +362,7 @@ namespace CustomMenuText.ViewControllers
             //this should prevent selecting a font that doesn't exist
             if (Configuration.PluginConfig.Instance.Font > FontManager.Fonts.Count)
                 Configuration.PluginConfig.Instance.Font = FontManager.Fonts.Count;
-            fontListData.data.Clear();
+            fontListData.Data.Clear();
             foreach (var font in FontManager.Fonts)
             {
                 CustomListTableData.CustomCellInfo fontCell;
@@ -374,26 +374,26 @@ namespace CustomMenuText.ViewControllers
                     if (name.ToLower().Equals("neontubes2") || name.ToLower().Equals("beon") || name.ToLower().Equals("teko"))
                     {
                         fontCell = new CustomListTableData.CustomCellInfo(name, "Built-In");
-                        fontListData.data.Add(fontCell);
+                        fontListData.Data.Add(fontCell);
                     }
                     else
                     {
                         fontCell = new CustomListTableData.CustomCellInfo(name);
-                        fontListData.data.Add(fontCell);
+                        fontListData.Data.Add(fontCell);
                     }
                 }
                 catch (Exception e)
                 {
                     fontCell = new CustomListTableData.CustomCellInfo("Broken Font", "please remove it");
-                    fontListData.data.Add(fontCell);
+                    fontListData.Data.Add(fontCell);
                     Plugin.Log.Critical("Exception while adding font:");
                     Console.WriteLine(e.ToString());
                 }
                 
             }
-            fontListData.tableView.ReloadData();
+            fontListData.TableView.ReloadData();
             
-            try{fontListData.tableView.SelectCellWithIdx(Configuration.PluginConfig.Instance.Font);}
+            try{fontListData.TableView.SelectCellWithIdx(Configuration.PluginConfig.Instance.Font);}
             catch(IndexOutOfRangeException){Plugin.Log.Critical("Tried to select a font beyond the bounds of the list");}
 
             
@@ -437,13 +437,13 @@ namespace CustomMenuText.ViewControllers
             switch (selType)
             {
                 case 0:
-                    textListData.tableView.SelectCellWithIdx(0);
+                    textListData.TableView.SelectCellWithIdx(0);
                     break;
                 case 1:
-                    textListData.tableView.SelectCellWithIdx(1);
+                    textListData.TableView.SelectCellWithIdx(1);
                     break;
                 case 2:
-                    textListData.tableView.SelectCellWithIdx(choice + 2);
+                    textListData.TableView.SelectCellWithIdx(choice + 2);
                     break;
             }
         }

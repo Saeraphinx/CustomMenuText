@@ -230,3 +230,60 @@ CUTE
 # Just Shapes & Beats
 <size=80%><#FFFFFF>Just <size=100%>sh<#FD479E>a<#FFFFFF>pes
 <size=130%><#81D9E5>&beats
+
+# skissue
+SKILL
+ISSUE
+
+# rank schmank
+RANK
+SCHMANK
+
+# i lov pp
+<size=75%><#777777>I LOVE
+<size=0%>
+<size=140%><#6772E5>PP
+
+# :3
+COLON
+THREE
+
+# :3333
+<size=333%><#FF55DD>:3
+
+# :3333c
+<size=666%><#FF55DD>:3c
+
+# slice for 115!
+<size=75%><#FF0000>SLICE FOR
+<size=0%>
+<size=150%><#0099FF>115!
+
+# accn't
+<size=175%><#FF0000>ACCN'T
+
+# yippee!
+YIPP
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+# !bsr 25f
+<size=75%><#777777>!bsr
+<size=0%>
+<size=150%><#0099FF>25f
+
+# Wanna break from the ads?
+Wanna break
+from the ads?
+
+# funny meme
+<size=75%><#FF0077>30-50 FERAL HOGS
+<size=75%><#FF0000>RUNNING <size=50%><#777777>INTO MY <size=75%><#33FF66>YARD
+<size=50%><#333333>(<size=33%>WITHIN 3-5 MINUTES<size=50%>)
+<size=75%><#0099FF>WHILE MY SMALL KIDS PLAY
+
+# 1.29.1 moment
+OFFICIAL
+<size=50%>1.29.1 REFUGEE CLUB MEMBER
+
+# Blank (i use this mod to hide the text actually)
+
