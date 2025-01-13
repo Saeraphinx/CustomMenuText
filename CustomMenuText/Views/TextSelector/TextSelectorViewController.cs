@@ -196,6 +196,16 @@ namespace CustomMenuText.ViewControllers
 
         public override string ResourceName => "CustomMenuText.Views.TextSelector.TextSelector.bsml";
         
+        protected bool DisableMetallicaLogo
+        {
+            get => Configuration.PluginConfig.Instance.DisableMetallicaLogo;
+            set
+            {
+                Configuration.PluginConfig.Instance.DisableMetallicaLogo = value;
+                Plugin.MetallicaLogoObject?.SetActive(!value);
+            }
+        }
+
         [UIComponent("TextList")] public CustomCellListTableData textListData;
         [UIComponent("FontList")] public CustomListTableData fontListData = new CustomListTableData();
         //[UIComponent("ImgList")] public CustomListTableData imgListData = new CustomListTableData();
