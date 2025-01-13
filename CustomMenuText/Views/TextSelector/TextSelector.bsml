@@ -1,10 +1,13 @@
 ﻿<vertical xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://monkeymanboy.github.io/BSML-Docs/BSMLSchema.xsd'>
+	<horizontal vertical-fit='PreferredSize' min-height='8'>
+		<toggle-setting apply-on-change='true' value='DisableMetallicaLogo' text='Disable Metallica Logo'/>
+	</horizontal>
 	<horizontal>
-		<vertical>
+		<vertical pref-height='60' vertical-fit='PreferredSize'>
 			<page-button event-click='TextList#PageUp' direction='Up'/>
 			<custom-list id='TextList' select-cell='textSelect' contents='contents' vertical-fit='PreferredSize' list-width='45'>
 				<stack vertical-fit='PreferredSize' child-expand-height='false'>
-					<vertical pref-height='14' min-height='14' vertical-fit='PreferredSize'>
+					<vertical pref-height='8' min-height='8' vertical-fit='PreferredSize'>
 						<horizontal horizontal-fit='PreferredSize'>
 							<vertical background='round-rect-panel' vertical-fit='PreferredSize' min-height='9' pref-height='9' pad-top='5' pad-bottom='5' pad-left='2' pad-right='2' bg-color='#FFFFFFB0'>
 								<horizontal>
@@ -20,7 +23,7 @@
 			</custom-list>
 			<page-button event-click='TextList#PageDown' direction='Down'/>
 		</vertical>
-		<vertical>
+		<vertical pref-height='60' vertical-fit='PreferredSize'>
 			<page-button event-click='FontList#PageUp' direction='Up'/>
 			<list id='FontList' select-cell='fontSelect' vertical-fit='PreferredSize' list-width='45'/>
 			<page-button event-click='FontList#PageDown' direction='Down'/>
@@ -30,7 +33,7 @@
 			<list id='ImgList' select-cell='imgSelect' vertical-fit='PreferredSize' list-width='45'/>
 			<page-button event-click='ImgList#PageDown' direction='Down'/>
 		</vertical>-->
-		</horizontal>
+	</horizontal>
 	<horizontal>
 		<button text='Reload Text' on-click='refreshTextEntries'/>
 		<button text='Reload Fonts' on-click='refreshFontEntries'/>

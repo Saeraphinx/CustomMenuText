@@ -137,13 +137,15 @@ namespace CustomMenuText
         public static List<string[]> allEntries = null;
 
         public string Name => "Custom Menu Text";
-        public string Version => "4.0.0";
+        public string Version => "4.0.4";
 
         // Store the text objects so when we leave the menu and come back, we aren't creating a bunch of them
         public static TextMeshPro mainText;
         public static TextMeshPro bottomText; // BOTTOM TEXT
 
         public System.Random random;
+
+        public static GameObject MetallicaLogoObject;
 
         [OnDisable]
         public void OnDisable()
@@ -173,6 +175,9 @@ namespace CustomMenuText
             MainMenuAwaiter.MainMenuInitializing += Views.UICreator.CreateMenu;
             Views.UICreator.CreateMenu();
             reloadFile();
+
+            MetallicaLogoObject = GameObject.Find("MetallicaLogo");
+            MetallicaLogoObject.transform.gameObject.SetActive(!Configuration.PluginConfig.Instance.DisableMetallicaLogo);
         }
 
         void InitializeImageFolder()

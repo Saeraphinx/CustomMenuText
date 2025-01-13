@@ -15,6 +15,8 @@ namespace CustomMenuText.Configuration
         /// public virtual bool UsingDiColors { get; set; } = true;
         /// </summary>
         public virtual int Font { get; set; } = 0;
+        
+        public virtual bool DisableMetallicaLogo { get; set; } = false;
 
         /// <summary>
         /// This is called whenever BSIPA reads the config from disk (including when file changes are detected).
