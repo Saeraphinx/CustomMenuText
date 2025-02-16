@@ -3,9 +3,9 @@
   "id": "CustomMenuText",
   "name": "CustomMenuText",
   "author": "TheBlackParrot",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Replaces the in-game Beat Saber logo with custom text.",
-  "gameVersion": "1.39.1",
+  "gameVersion": "1.40.0",
   "dependsOn": {
     "BSIPA": "^4.3.4",
     "BeatSaberMarkupLanguage": "^1.12.3"
